@@ -9,7 +9,9 @@
  */
 package com.webautomation.stepdef;
 
-import org.testng.Assert;
+
+
+import org.junit.Assert;
 
 import com.weabautomation.pages.LoginPage;
 import com.webautomation.driver.DriverManager;

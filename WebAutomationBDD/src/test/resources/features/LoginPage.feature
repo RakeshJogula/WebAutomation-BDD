@@ -17,5 +17,5 @@ Feature: Login Page Feature
     When user enters username "Admin"
     And user enters password "admin123"
     And user clicks on login button
-    
+    Then logout
     

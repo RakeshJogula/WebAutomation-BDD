@@ -10,7 +10,10 @@
 package com.webautomation.stepdef;
 
 import com.weabautomation.pages.HomePage;
+import com.weabautomation.pages.LoginPage;
+import com.webautomation.model.TestContext;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -29,10 +32,17 @@ import io.cucumber.java.en.When;
  */
 public class HomePageSteps {
 
-	HomePage homepage = new HomePage();
-
+	LoginPage loginPage = new LoginPage();
+	HomePage homepage = null;
+	private TestContext testContext = null;
+	
+	public HomePageSteps(TestContext testContext) {
+		this.testContext= testContext;
+	}
+	
 	@Given("user is on Home page")
 	public void user_is_on_home_page() {
+		homepage = loginPage.waitUntilHomePageisLoaded();
 		homepage.isHomePageDisplayed();
 	}
 
@@ -52,7 +62,7 @@ public class HomePageSteps {
 	}
 
 	@Then("^Enter Personal Details (.+),(.+),(.+)$")
-	public void enter_personal_details_(String firstname, String middlename, String lastname){
+	public void enter_personal_details_(String firstname, String middlename, String lastname) {
 		homepage.enterFirstName(firstname);
 		homepage.enterLastName(lastname);
 		homepage.enterMiddleName(middlename);
@@ -82,7 +92,34 @@ public class HomePageSteps {
 
 	@Then("Sucessfully Saved message is displayed")
 	public void sucessfully_saved_message_is_displayed() {
-
+		
 	}
+
+	@When("^click on Leave Tab$")
+	public void click_on_leave_tab() {
+		homepage.clickOnLeaveTab();
+	}
+
+	@Then("^Leave List Tab is displayed$")
+	public void leave_list_tab_is_displayed() {
+		homepage.isLeavedropdownDisplayed();
+	}
+
+    @And("^click on Assign Leave in dropdown$")
+    public void click_on_Assign_Leave_in_dropdown() {
+    	homepage.clickOnAssignLeaveDropdown();
+    }
+    
+    @And("^fetch All Personal details Information$")
+    public void fetch_all_personal_details_information() throws Throwable {
+        testContext.setFirstName(homepage.getFirstName());
+        testContext.setLastName(homepage.getLastName());
+        testContext.setEmployeeId(homepage.getEmployeeID());
+    }
+
+    @Then("^logout$")
+    public void logout() throws Throwable {
+        loginPage.waitUntilHomePageisLoaded().clickWelcome().clicklogout();
+    }
 
 }

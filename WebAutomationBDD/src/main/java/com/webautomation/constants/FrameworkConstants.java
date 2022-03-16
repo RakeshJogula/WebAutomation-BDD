@@ -9,6 +9,8 @@
  */
 package com.webautomation.constants;
 
+
+
 /**
  * <b>Info</b><br>
  * <b>Date</b> - Mar 16, 2022 <br>
@@ -24,6 +26,8 @@ public final class FrameworkConstants {
 	
 	private static final String RESOURCESPATH = System.getProperty("user.dir")+"/src/test/resources";
 	private static final String CONFIGPATH = RESOURCESPATH +"/config/config.properties";
+	private static final String REPORTPATHFOLDER = System.getProperty("user.dir") + "/extent-test-output/";
+	private static String extentReportPath = "";
 	
     public static String getResourcesPath() {
     	return RESOURCESPATH;
@@ -33,4 +37,8 @@ public final class FrameworkConstants {
     	return CONFIGPATH;
     }
 
+	public static String getReportpath() {
+		extentReportPath = REPORTPATHFOLDER + "_index.html";
+		return extentReportPath;
+	}
 }

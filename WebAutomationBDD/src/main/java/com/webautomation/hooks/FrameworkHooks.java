@@ -11,8 +11,11 @@ package com.webautomation.hooks;
 
 import com.webautomation.driver.Driver;
 
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import io.cucumber.java.Status;
 
 /**
  * <b>Info</b><br>
@@ -25,13 +28,17 @@ import io.cucumber.java.Before;
  */
 public class FrameworkHooks {
 	
+	
+	
 	@Before
-	public void setup() {
+	public void setup(Scenario scenario) {
 		Driver.initDriver("chrome","99.0.4844.51");
+
 	}
+
 	
 	@After
-	public void tearDown() {
+	public void tearDown(Scenario scenario) {
 		Driver.quitDriver();
 	}
 

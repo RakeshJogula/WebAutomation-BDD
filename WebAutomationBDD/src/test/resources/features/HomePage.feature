@@ -17,7 +17,9 @@ Feature: Home Page Feature
     And Maritial Status as <MaritialStatus>
     When Click on Save button
     Then Sucessfully Saved message is displayed
+    Then logout
 
     Examples: 
       | FirstName | MiddleName | LastName   | EmployeeID | ExpiryDate | Gender | MaritialStatus |
       | Paull     | test       | Collingsss |       6119 | 2022-03-09 | Male   | Single         |
+

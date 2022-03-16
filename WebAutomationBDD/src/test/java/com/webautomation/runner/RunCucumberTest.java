@@ -9,7 +9,9 @@
  */
 package com.webautomation.runner;
 
+
 import org.junit.runner.RunWith;
+
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -26,11 +28,13 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		 features = {"src/test/resources/features"},
-		 glue = {"com.webautomation.stepdef","com.webautomation.hooks"},
-		 plugin = {"pretty"}
-		 
+		plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+					"rerun:target/failedrerun.txt"
+				 },
+		monochrome = true,
+		features = {"src/test/resources/features"},
+		 glue = {"com.webautomation.stepdef","com.webautomation.hooks"}		 
 		)
-public class TestRunner {
+public class RunCucumberTest {
 
 }

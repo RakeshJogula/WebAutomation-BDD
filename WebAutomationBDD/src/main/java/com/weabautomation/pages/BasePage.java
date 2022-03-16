@@ -1,5 +1,8 @@
 package com.weabautomation.pages;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -8,6 +11,11 @@ import com.webautomation.driver.DriverManager;
 
 
 public class BasePage {
+	
+	protected List<WebElement> elementList(String path){
+		return DriverManager.getDriver().findElements(By.xpath(path));
+	}
+	
 	
 	protected void click(WebElement element) {
 		element.click();
@@ -34,5 +42,9 @@ public class BasePage {
 		else {
 			return false;
 		}
+	}
+	
+	protected String getText(WebElement element) {
+		return element.getText();
 	}
 }

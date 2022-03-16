@@ -43,7 +43,12 @@ public class HomePage extends BasePage {
 	private final By radio_gender_female = By.xpath("//label[text()='Female']");
 	private final By dropdown_maritial_status = By.id("personal_cmbMarital");
 	private final By btn_save = By.id("btnSave");
-
+	private final By leave_tab = By.id("menu_leave_viewLeaveModule");
+	private final By leave_tab_dropdown = By.xpath("//a[@id='menu_leave_viewLeaveModule']/parent::li/ul");
+	private final By btn_assignleave_apply = By.id("menu_leave_assignLeave");
+	private final By apply_leave_form = By.id("assign-leave"); 
+	private final By pim_tab = By.id("menu_pim_viewPimModule");
+	
 	public boolean isHomePageDisplayed() {
 		return isElementDisplayed(ExplictWaitFactory.performExplicitWait(link_welcome, WaitStratergy.VISIBLE));
 	}
@@ -86,6 +91,33 @@ public class HomePage extends BasePage {
 		} catch (Exception e) {
 		}
 		return this;
+	}
+	
+	public String getFirstName() {
+		String firstName = null;
+		try {
+			firstName = getText(ExplictWaitFactory.performExplicitWait(txt_firstName, WaitStratergy.VISIBLE));
+		} catch (Exception e) {
+		}
+		return firstName;
+	}
+	
+	public String getLastName() {
+		String lastName = null;
+		try {
+			lastName = getText(ExplictWaitFactory.performExplicitWait(txt_lastName, WaitStratergy.VISIBLE));
+		} catch (Exception e) {
+		}
+		return lastName;
+	}
+	
+	public String getEmployeeID() {
+		String employeeId = null;
+		try {
+			employeeId = getText(ExplictWaitFactory.performExplicitWait(txt_employeeId, WaitStratergy.VISIBLE));
+		} catch (Exception e) {
+		}
+		return employeeId;
 	}
 
 	public HomePage enterMiddleName(String middleName) {
@@ -151,6 +183,50 @@ public class HomePage extends BasePage {
 
 		}
 		return this;
+	}
+	
+	public HomePage clickOnLeaveTab() {
+		try {
+			click(ExplictWaitFactory.performExplicitWait(leave_tab, WaitStratergy.CLICKABLE));
+		} catch (Exception e) {
+
+		}
+		return this;
+	}
+	
+	public LeavePage clickOnAssignLeaveDropdown() {
+		try {
+			click(ExplictWaitFactory.performExplicitWait(btn_assignleave_apply, WaitStratergy.CLICKABLE));
+		} catch (Exception e) {
+
+		}
+		return new LeavePage();
+	}
+
+	
+	public void isLeavedropdownDisplayed() {
+		try {
+			isElementDisplayed(ExplictWaitFactory.performExplicitWait(leave_tab_dropdown, WaitStratergy.CLICKABLE));
+		} catch (Exception e) {
+
+		}
+	}
+	
+	public LeavePage isApplyLeavePageDisplayed() {
+		try {
+			isElementDisplayed(ExplictWaitFactory.performExplicitWait(apply_leave_form, WaitStratergy.VISIBLE));
+		} catch (Exception e) {
+
+		}
+		return new LeavePage();
+	}
+
+	/**
+	 * @return
+	 */
+	public PIMPage clickOnpimtab() {
+		click(ExplictWaitFactory.performExplicitWait(pim_tab, WaitStratergy.CLICKABLE));
+		return new PIMPage();
 	}
 
 }

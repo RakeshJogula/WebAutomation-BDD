@@ -30,6 +30,8 @@ public class LoginPage extends BasePage {
 	private final By button = By.id("btnLogin");
 	private final By forgotLogin = By.id("forgotPasswordLink");
 	private final By logo = By.id("divLogo");
+	private final By link_welcome = By.id("welcome");
+
 	
 	public String getTitle() {
 		return getPageTitle();
@@ -54,15 +56,13 @@ public class LoginPage extends BasePage {
 		return this;
 	}
 	
-	public HomePage clickOnLogin() {
+	public LoginPage clickOnLogin() {
 		click(ExplictWaitFactory.performExplicitWait(button, WaitStratergy.CLICKABLE));
-		return new HomePage();
+		return this;
 	}
 	
-	public HomePage doLogin(String usernametext,String passwordtext) {
-		sendkeys(ExplictWaitFactory.performExplicitWait(username, WaitStratergy.VISIBLE),usernametext);
-		sendkeys(ExplictWaitFactory.performExplicitWait(password, WaitStratergy.VISIBLE),passwordtext);
-		click(ExplictWaitFactory.performExplicitWait(button, WaitStratergy.CLICKABLE));
+	public HomePage waitUntilHomePageisLoaded() {
+		isElementDisplayed(ExplictWaitFactory.performExplicitWait(link_welcome, WaitStratergy.VISIBLE));
 		return new HomePage();
 	}
 
